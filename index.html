@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Labrada:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Mis estilos -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="contenedor">
+        <div id="caja1">
+            <h2 id="temperatura-valor"></h2>
+            <h2 id="temperatura-descripcion"></h2>
+        </div>
+        <div id="caja2">
+            <h2 id="ubicacion"></h2>
+            <img src="" alt="" id="icono-animado">
+        </div>
+        <div id="caja3">
+            <h2>Velocidad del viento</h2>
+            <h2 id="viento-velocidad"></h2>
+        </div>
+        <div id="consulta">
+            <button id="search" for="buscar">Buscar</button>
+            <input type="text" name="ciudad" id="entrada">
+        </div>
+    </div>
+
+    <!-- Mis scripts -->
+    <script src="js/weather-script.js"></script>
+    
+</body>
+</html>
