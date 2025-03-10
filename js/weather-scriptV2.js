@@ -1,5 +1,5 @@
 // Declaración de variables
-const apiClave = '509cd7683e82abcb17182d1dca08fac9';
+const apiClave = '';
 let boton = document.querySelector('#envia');
 let ciudad = document.querySelector('#consultaTiempo').value;
 let temperaturaValor = document.querySelector('#temperatura-valor');
@@ -78,17 +78,17 @@ const obtenerIcono = (icono) =>{
 }
 
 // Evento para que escuche la entrada del usuario (1. evento click, 2. evento Enter)
-window.addEventListener('DOMContentLoaded', () =>{
+// window.addEventListener('DOMContentLoaded', () =>{
 
-    window.addEventListener('load', ()=>{
-        boton.addEventListener('click', validarCiudad);
-    });
-});
+//     window.addEventListener('load', (ciudad)=>{
+//         boton.addEventListener('click', ()=> console.log(ciudad));
+//     });
+// });
+
 
 //     document.querySelector('#consultaTiempo').addEventListener('keyup', (event) =>{
 //         if (event.key === 'Enter'){
-//             window.addEventListener('load', ()=>{
-//                 boton.addEventListener('click', validarCiudad);
+
 //             });
 //         }
 //     })
@@ -96,6 +96,7 @@ window.addEventListener('DOMContentLoaded', () =>{
 
 // Función validarCiudad()
 function validarCiudad(ciudad){
+    console.log(ciudad);
     let entrada = document.querySelector('#consultaTiempo');
     let spanError = document.querySelector('#entradaError');
     let expresio = /^[a-zA-Zà-ÿ ]{1,120}$/; 
@@ -155,3 +156,23 @@ const app = (ciudad) => {
 // }
 
 
+// Arrow Function
+const app = (ciudad) => {
+    let llamadaCiudad = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKeyOpenW}&units=metric&lang=es`;
+
+    fetch(llamadaCiudad)
+        .then(response => response.json())
+        // .then (json => console.log(json))
+        .then(datos =>{
+            // let temperatura = Math.round(datos.main.temp);
+            // temperaturaValorCiudad.textContent = `${temperatura} °C`;
+            temperaturaValorCiudad.textContent = `${Math.round(datos.main.temp)} °C`;
+            ubicacionCiudad.textContent = datos.name;
+            temperaturaDescripcionCiudad.textContent = datos.weather[0].description.toUpperCase();
+            // let icono = datos.weather[0].main;
+            // iconoDomCiudad.src = obtenerIcono(icono);
+            iconoDomCiudad.src = obtenerIcono(datos.weather[0].main);
+            vientoVelocidadCiudad.textContent = `${datos.wind.speed} m/s`;
+        })
+        .catch(err => console.log('Error:', err));
+};
